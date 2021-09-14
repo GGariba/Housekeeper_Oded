@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import sun.tools.jar.CommandLine;
+
 
 @SpringBootApplication
 public class OdedApiApplication implements CommandLineRunner {
@@ -24,26 +24,26 @@ public class OdedApiApplication implements CommandLineRunner {
 		repo.deleteAll();
 
 		// save a couple of customers
-		repo.save(new Task(1,"Dishes", "Smith",));
-		repo.save(new Task("Bob", "Smith"));
+		repo.save(new Task(1,"Dishes", "Wash","Wash dishes and clean the sink to gain 3 stars",3));
+		repo.save(new Task(2,"Dishes", "sort","Sort and order the dishes to gain 2 stars",2));
 
 		// fetch all customers
-		System.out.println("Customers found with findAll():");
+		System.out.println("Tasks found with findAll():");
 		System.out.println("-------------------------------");
-		for (Customer customer : repository.findAll()) {
-			System.out.println(customer);
+		for (Task task : repo.findAll()) {
+			System.out.println(task);
 		}
 		System.out.println();
 
 		// fetch an individual customer
-		System.out.println("Customer found with findByFirstName('Alice'):");
+		System.out.println("Task found with findByTaskId(2):");
 		System.out.println("--------------------------------");
-		System.out.println(repository.findByFirstName("Alice"));
+		System.out.println(repo.findByTaskId(2));
 
-		System.out.println("Customers found with findByLastName('Smith'):");
+		System.out.println("Tasks found with findByTaskCategory(\"Dishes\"):");
 		System.out.println("--------------------------------");
-		for (Customer customer : repository.findByLastName("Smith")) {
-			System.out.println(customer);
+		for (Task task : repo.findByTaskCategory("Dishes")) {
+			System.out.println(task);
 		}
 	}
 }
